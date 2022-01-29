@@ -63,6 +63,8 @@ def plot_sens(T: list, S: list) -> list:
                    labelrotation=45)  # Поворот подписей
     ax.xaxis.set_major_locator(MultipleLocator(15))
     ax.yaxis.set_major_locator(MultipleLocator(0.25))
+    # box = ax.get_position()
+    # ax.set_position(box.x0, box.y0, box.width*0.8, box.height)
     plt.grid(color='k',
              linewidth='0.5',
              linestyle='--')
@@ -77,9 +79,25 @@ def __print__(x):
             print(j, end=" ")
 
 
+def strain(sensors_value):
+    max_value = []
+    sensor: list
+    for sensor in sensors_value:
+        max_ = sensor[0]
+        # assert isinstance(sensor, list)
+        for i in sensor:
+            if abs(i) > abs(max_):
+                max_ = i
+        max_value.append(max_)
+    # print(max_value)
+
+    return max_value
+
+
 time = np.array((reg(y_list(book2, 1))))
 # sensors = sens()
 # print(type(sensors[5][9]))
-sensors = np.array(sens())
+sensors = np.array(sens())  # показание датчиков
+strain(sensors)
 # __print__(sensors)
-plot_sens(time, sensors)
+# plot_sens(time, sensors)
