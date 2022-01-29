@@ -17,10 +17,10 @@ def y_list(x, col):  # функция вытаскивания значений 
     return y_list_[1:len(y_list_)]
 
 
-def name_sens(x, row_num):
+def name_sens(x):
     sensors_name = []
     for i in range(2, x.max_column):
-        sensors_name.append(x.cell(row=row_num, column=i).value)
+        sensors_name.append(x.cell(row=1, column=i).value)
     return sensors_name
 
 
@@ -49,7 +49,7 @@ def plot_sens(T: list, S: list) -> list:
     :rtype: list
     """
     for i in range(len(S)):
-        plt.plot(T, S[i], label=f'{name_sens(book2, 1)[i]}')
+        plt.plot(T, S[i], label=f'{name_sens(book2)[i]}')
     plt.xlabel("time", fontsize=14)
     plt.ylabel("value " + r'$\lambda$' + ", Нм")
     plt.title("Изменение длины волны со временем")
@@ -92,34 +92,6 @@ def strain(sensors_value):
     # print(max_value)
 
     return max_value
-
-
-def strain(sensors_value):
-    max_value = []
-    sensor: list
-    for sensor in sensors_value:
-        max_ = sensor[0]
-        # assert isinstance(sensor, list)
-        for i in sensor:
-            if abs(i) > abs(max_):
-                max_ = i
-        max_value.append(max_)
-
-    # print(max_value)
-
-    def first_value():
-        book1 = exel_file["track_from_2021-11-29_12-20-46"]
-        first_val = name_sens(book1, 2)
-        # print(first_val)
-        return first_val
-
-    def stress():
-        stress_num = []
-        for i in range(len(max_value)):
-            stress_num.append(max_value[i] / (0.809 * float(first_value()[i])) * 1000)
-        return stress_num
-
-    # print(stress())
 
 
 time = np.array((reg(y_list(book2, 1))))
