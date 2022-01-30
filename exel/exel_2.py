@@ -107,7 +107,7 @@ def strain(sensors_value):
 
     # print(max_value)
 
-    def first_value():
+    def first_value():  # функция для гисстограммы
         book1 = exel_file["track_from_2021-11-29_12-20-46"]
         first_val = name_sens(book1, 2)
         # print(first_val)
@@ -120,6 +120,18 @@ def strain(sensors_value):
         return stress_num
 
     # print(stress())
+
+    def plot_stress():
+        x = stress()
+        fig = plt.figure()
+        plt.bar(name_sens(book2, 1), x)
+        plt.title("Абсолютная деформация")
+        plt.grid(True)
+        plt.xticks(fontsize=8)
+        fig.autofmt_xdate(rotation=45)
+        plt.show()
+
+    plot_stress()
 
 
 time = np.array((reg(y_list(book2, 1))))
