@@ -94,7 +94,7 @@ def strain(sensors_value):
     return max_value
 
 
-def strain(sensors_value):
+def strain(sensors_value):  # функция для гисстограммы
     max_value = []
     sensor: list
     for sensor in sensors_value:
@@ -107,7 +107,7 @@ def strain(sensors_value):
 
     # print(max_value)
 
-    def first_value():  # функция для гисстограммы
+    def first_value():
         book1 = exel_file["track_from_2021-11-29_12-20-46"]
         first_val = name_sens(book1, 2)
         # print(first_val)
